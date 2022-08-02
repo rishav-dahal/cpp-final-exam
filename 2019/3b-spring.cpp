@@ -3,33 +3,47 @@
 #include<iostream>
 
 using namespace std;
-
-class base
-{
-    protected:
-    int i,j;
+class Derived;
+class Base
+{    
     public:
+    int i,j;
     void input()
     {
         cout<<"Enter vector cordinates i and j"<<endl;
         cin>>i>>j;
     }
-    void friend display()
+    friend void display(Derived);
+
+};
+
+class Derived: public Base
+{
+    
+    public:
+    int result1,result2;
+    void add_vector(Base a,Base b)
     {
-        cout<<"THe sum of two vector "<<i <<" + "<<j
+        result1=a.i+b.i;
+        result2=a.j+b.j;
     }
 
 };
 
-class derived: public base
+int main()
 {
-    int sum;
-    public:
-    int add_vector()
-    {
-        sum=i+j;
-        return sum;
-        
-    }
-    void display();
+    Base a,b;
+    Derived d;
+    a.input();
+    b.input();
+    d.add_vector(a,b);
+    display(d);
+    return 0;
+
+
+}
+
+void display(Derived d)
+{
+    cout<<"THe sum of two vector "<<d.result1 <<"i+"<<d.result2<<"j"<<endl;
 }

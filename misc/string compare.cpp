@@ -5,7 +5,7 @@ class Test{
     char str[30];
     public:
      Test(){}
-     Test(char name[])
+     Test(char* name)
      {
          strcpy(str,name);
      }
